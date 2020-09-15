@@ -213,12 +213,19 @@ async function run() {
     }
 
     const client = new GitHub(GITHUB_TOKEN);
+    await client.issues.createComment({
+        repo,
+        issue_number: context.payload.pull_request.number,
+        body: 'Build has started!'
+      });
+/*
     await client.reactions.createForPullRequestReviewComment({
         comment_id: context.payload.review.id,
         content: reaction,
         owner,
         repo
     });
+*/
 }
 
 run().catch(err => {

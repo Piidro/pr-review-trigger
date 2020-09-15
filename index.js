@@ -31,6 +31,7 @@ async function run() {
 
     const client = new GitHub(GITHUB_TOKEN);
     await client.issues.createComment({
+        owner,
         repo,
         issue_number: context.payload.pull_request.number,
         body: 'Build has started!'

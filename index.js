@@ -28,24 +28,14 @@ async function run() {
     if (!reaction) {
         return;
     }
-/*
+
     const client = new GitHub(GITHUB_TOKEN);
-    if (context.eventName === "issue_comment") {
-        await client.reactions.createForIssueComment({
-            owner,
-            repo,
-            comment_id: context.payload.review.id,
-            content: reaction
-        });
-    } else {
-        await client.reactions.createForIssue({
-            owner,
-            repo,
-            issue_number: context.payload.pull_request.number,
-            content: reaction
-        });
-    }
-*/
+    await client.reactions.createForIssueComment({
+        owner,
+        repo,
+        comment_id: context.payload.review.id,
+        content: reaction
+    });
 }
 
 run().catch(err => {

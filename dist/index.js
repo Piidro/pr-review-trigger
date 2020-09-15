@@ -213,11 +213,11 @@ async function run() {
     }
 
     const client = new GitHub(GITHUB_TOKEN);
-    await client.reactions.createForIssueComment({
-        owner,
-        repo,
+    await client.reactions.createForPullRequestReviewComment({
         comment_id: context.payload.review.id,
-        content: reaction
+        content: reaction,
+        owner,
+        repo
     });
 }
 

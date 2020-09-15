@@ -1,10 +1,6 @@
 name: 'Pull Request Review Trigger'
 description: 'Look for a "trigger word" in beginning of a pull-request review comment. Outputs was it found or not.'
 inputs:
-  reaction:
-    description: 'If set, the specified emoji "reaction" is put on the comment to indicate that the trigger was detected. For example, "rocket".'
-    required: false
-    default: ""
   trigger:
     description: 'The string to look for in pull-request review comment. For example "/beta"'
     required: true

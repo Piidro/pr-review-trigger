@@ -6,12 +6,7 @@ const { context, GitHub } = require("@actions/github");
 async function run() {
     const trigger = core.getInput("trigger", { required: true });
 
-    const reaction = core.getInput("reaction");
     const { GITHUB_TOKEN } = process.env;
-    if (reaction && !GITHUB_TOKEN) {
-        core.setFailed('If "reaction" is supplied, GITHUB_TOKEN is required');
-        return;
-    }
 
     const body = context.payload.review.body
     core.setOutput('comment_body', body);
@@ -25,10 +20,6 @@ async function run() {
 
     core.setOutput("triggered", "true");
 
-    if (!reaction) {
-        return;
-    }
-
     const client = new GitHub(GITHUB_TOKEN);
     await client.issues.createComment({
         owner,
@@ -36,14 +27,6 @@ async function run() {
         issue_number: context.payload.pull_request.number,
         body: 'Build has started!'
       });
-/*
-    await client.reactions.createForPullRequestReviewComment({
-        comment_id: context.payload.review.id,
-        content: reaction,
-        owner,
-        repo
-    });
-*/
 }
 
 run().catch(err => {

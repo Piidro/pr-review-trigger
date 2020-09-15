@@ -15,4 +15,8 @@ on:
 
 In case of any changes, you need to have `zeit/ncc`. Install with `npm i -g @zeit/ncc`
 
-Then: `ncc build index.js`
+Then: 
+```
+npm install
+ncc build index.js
+```
